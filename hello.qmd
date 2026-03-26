@@ -3,6 +3,8 @@ title: "Quarto Basics"
 format: html
 ---
 
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Duke_University_logo.svg/960px-Duke_University_logo.svg.png){width=280}
+
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
 ```{python}
