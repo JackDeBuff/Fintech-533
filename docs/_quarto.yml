@@ -3,11 +3,13 @@ project:
   output-dir: .
 
 website:
-  title: "Supawich Puengdang"
+  title: "Supawich Puengdang | Fintech 533"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - href: turtle-strategy.qmd
+        text: "🐢 Turtle Strategy (ASML)"
       - href: breakout-strategy.qmd
         text: "ASML Breakout Strategy"
       - about.qmd

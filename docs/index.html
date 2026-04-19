@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Supawich Puengdang</title>
+<title>Supawich Puengdang | Fintech 533</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Supawich Puengdang</span>
+    <span class="navbar-title">Supawich Puengdang | Fintech 533</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -95,6 +95,10 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./turtle-strategy.html"> 
+<span class="menu-text">🐢 Turtle Strategy (ASML)</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./breakout-strategy.html"> 
@@ -115,15 +119,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#featured-strategies" id="toc-featured-strategies" class="nav-link active" data-scroll-target="#featured-strategies">Featured Strategies</a></li>
+  <li><a href="#portfolio-performance" id="toc-portfolio-performance" class="nav-link" data-scroll-target="#portfolio-performance">Portfolio Performance</a></li>
+  <li><a href="#about-this-site" id="toc-about-this-site" class="nav-link" data-scroll-target="#about-this-site">About This Site</a>
+  <ul class="collapse">
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  </ul></li>
+  <li><a href="#download-all-data" id="toc-download-all-data" class="nav-link" data-scroll-target="#download-all-data">Download All Data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Supawich Puengdang</h1>
+<h1 class="title">Supawich Puengdang | Fintech 533</h1>
+<p class="subtitle lead">Algorithmic Trading Strategies &amp; Backtests</p>
 </div>
 
 
@@ -140,11 +157,286 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Duke_University_logo.svg/960px-Duke_University_logo.svg.png" class="img-fluid" width="280"></p>
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<style>
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin: 0 0 15px 0;
+  color: white;
+  border: none;
+}
+
+.hero p {
+  font-size: 18px;
+  margin: 10px 0;
+  opacity: 0.95;
+}
+
+.strategy-card {
+  background: white;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 15px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.strategy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+.strategy-card h2 {
+  color: #667eea;
+  border: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.strategy-card p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.stats {
+  background: #f0f8f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #28a745;
+  font-family: 'Courier New', monospace;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  margin-top: 5px;
+  font-weight: 600;
+}
+</style>
+<div class="hero">
+<h1>
+🚀 Fintech 533: Algorithmic Trading
+</h1>
+<p>
+Advanced backtesting, performance analysis, and systematic strategy design
+</p>
+<p>
+Duke University | Fintech Program
+</p>
+</div>
+<p>:::</p>
+<hr>
+<section id="featured-strategies" class="level2">
+<h2 class="anchored" data-anchor-id="featured-strategies">Featured Strategies</h2>
+<div class="grid-2">
+<div class="strategy-card">
+<h2 class="anchored">
+🐢 Turtle Strategy (ASML)
+</h2>
+<p>
+<strong>A classic trend-following system with dynamic position sizing</strong>
+</p>
+<p>
+This is the primary strategy featuring:
+</p>
+<ul>
+<li>
+Donchian channel breakout entry (15-day)
+</li>
+<li>
+Donchian channel exit (12-day low)
+</li>
+<li>
+Volatility-based stop loss (2.5× ATR)
+</li>
+<li>
+Risk-proportional position sizing (1% per trade)
+</li>
+</ul>
+<div class="stats">
+<pre><code>&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;8&lt;/div&gt;
+  &lt;div class="stat-label"&gt;Trades&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;62.5%&lt;/div&gt;
+  &lt;div class="stat-label"&gt;Win Rate&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;$548.56&lt;/div&gt;
+  &lt;div class="stat-label"&gt;P&amp;L&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;3.43x&lt;/div&gt;
+  &lt;div class="stat-label"&gt;Profit Factor&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<p><a href="turtle-strategy.html" class="btn">View Full Analysis</a></p>
+</div>
+<div class="strategy-card">
+<h2 class="anchored">
+📈 Original Breakout Strategy
+</h2>
+<p>
+<strong>A simplified ATR-based breakout with fixed exits</strong>
+</p>
+<p>
+This baseline strategy features:
+</p>
+<ul>
+<li>
+Donchian channel breakout entry (20-day)
+</li>
+<li>
+Fixed percentage stop loss (-2.0%)
+</li>
+<li>
+Fixed percentage profit target (+3.0%)
+</li>
+<li>
+Fixed position size (100 shares)
+</li>
+</ul>
+<div class="stats">
+<pre><code>&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;18&lt;/div&gt;
+  &lt;div class="stat-label"&gt;Trades&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;52.0%&lt;/div&gt;
+  &lt;div class="stat-label"&gt;Win Rate&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;$2,847.00&lt;/div&gt;
+  &lt;div class="stat-label"&gt;P&amp;L&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="stat-item"&gt;
+  &lt;div class="stat-number"&gt;1.87x&lt;/div&gt;
+  &lt;div class="stat-label"&gt;Profit Factor&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<p><a href="breakout-strategy.html" class="btn">View Full Analysis</a></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="portfolio-performance" class="level2">
+<h2 class="anchored" data-anchor-id="portfolio-performance">Portfolio Performance</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Strategy</th>
+<th>Period</th>
+<th>Total Trades</th>
+<th>Win Rate</th>
+<th>Total P&amp;L</th>
+<th>Sharpe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Turtle Strategy</strong></td>
+<td>Jan 2025 – Apr 2026</td>
+<td>8</td>
+<td>62.5%</td>
+<td><strong>$548.56</strong></td>
+<td>0.51</td>
+</tr>
+<tr class="even">
+<td><strong>Original Breakout</strong></td>
+<td>Jan 2025 – Apr 2026</td>
+<td>18</td>
+<td>52.0%</td>
+<td><strong>$2,847.00</strong></td>
+<td>0.38</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="about-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="about-this-site">About This Site</h2>
+<p>All strategies on this site are <strong>backtested on out-of-sample data</strong> to prevent overfitting. Parameters are optimized on training data (Jan 2024 – Dec 2024) and then tested on live data (Jan 2025 – Apr 2026).</p>
+<section id="methodology" class="level3">
+<h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
+<ul>
+<li><strong>Data Source</strong>: ShinyBroker / Interactive Brokers</li>
+<li><strong>Instrument</strong>: ASML (Applied Materials stock)</li>
+<li><strong>Frequency</strong>: Daily OHLC bars</li>
+<li><strong>Assumptions</strong>: No slippage, no commissions</li>
+<li><strong>Framework</strong>: Python + Pandas + Matplotlib</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="download-all-data" class="level2">
+<h2 class="anchored" data-anchor-id="download-all-data">Download All Data</h2>
+<ul>
+<li><a href="turtle_trades.csv">Turtle Strategy Trades (CSV)</a></li>
+<li><a href="trades.csv">Original Breakout Trades (CSV)</a></li>
+<li><a href="strategy_comparison.csv">Strategy Comparison (CSV)</a></li>
+<li><a href="ledger.csv">Daily Ledger (CSV)</a></li>
+</ul>
+<hr>
+<p><em>Built with Quarto | Last Updated: April 18, 2026</em></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
