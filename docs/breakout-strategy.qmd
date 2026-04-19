@@ -272,16 +272,17 @@ Reentry Cooldown:         None (can immediately re-enter)
 
 ## Performance Visualizations
 
-### Equity Curve & Drawdown Analysis
+### Complete Performance Dashboard
 
-The following chart displays the cumulative P&L trajectory over the entire backtest period, along with peak-to-trough drawdowns and the Z-score of the underlying asset price (from a related pairs trading analysis shown for reference).
+The following comprehensive dashboard displays the ASML breakout strategy's complete performance across four dimensions:
 
-![](backtest_performance.png)
+![](asml_breakout_performance.png)
 
 **Chart Interpretation**:
-- **Top Panel (Equity Curve)**: Shows cumulative profit growing from $0 to $5,558 with volatility. Green shaded area highlights cumulative gains. Major peaks occur in September-October 2025 and January 2026.
-- **Middle Panel (Drawdown)**: Red underwater plot shows how deep cumulative losses dip from peaks. Largest drawdown is ~$2,856 in early January 2026, recovered within weeks.
-- **Bottom Panel (Z-Score)**: Illustrative; shows relative value signals from a complementary analysis (not directly used in ASML breakout logic).
+- **Top Panel (Equity Curve)**: Cumulative profit journey from Jan 2025 to Apr 2026. Started flat, took initial drawdown in May 2025 (first loss trade), then strong recovery in September-October with back-to-back winners, peak of ~$8,500 in January 2026, before settling to final $5,558 by April.
+- **Middle-Left Panel (Drawdown)**: Red underwater plot showing peak-to-trough declines. Largest drawdown ~$5,061 occurred in May 2025 after first stop-loss trade. Strategy recovered within 2-3 months.
+- **Middle-Right Panel (Trade Distribution)**: Histogram of all 6 trades with P&L values labeled. Clear 50/50 split: 3 winners (Trade 2, 3, 5) averaging $4,537 each; 3 losers (Trade 1, 4, 6) averaging -$2,685 each.
+- **Bottom Panel (Donchian Channels + Price Action)**: ASML price (black line) with 20-day Donchian High (red dashed) and Low (green dashed). Green triangles mark entry signals; red triangles mark exits. Shows how breakout points (where price breaks above channel) align with profitable moves (trades 2, 3, 5) versus choppy moves that trigger stops (trades 1, 4, 6).
 
 ---
 

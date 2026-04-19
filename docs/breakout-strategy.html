@@ -142,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#performance-visualizations" id="toc-performance-visualizations" class="nav-link" data-scroll-target="#performance-visualizations"><span class="header-section-number">5</span> Performance Visualizations</a>
   <ul class="collapse">
-  <li><a href="#equity-curve-drawdown-analysis" id="toc-equity-curve-drawdown-analysis" class="nav-link" data-scroll-target="#equity-curve-drawdown-analysis"><span class="header-section-number">5.1</span> Equity Curve &amp; Drawdown Analysis</a></li>
+  <li><a href="#complete-performance-dashboard" id="toc-complete-performance-dashboard" class="nav-link" data-scroll-target="#complete-performance-dashboard"><span class="header-section-number">5.1</span> Complete Performance Dashboard</a></li>
   </ul></li>
   <li><a href="#trade-blotter-execution-details" id="toc-trade-blotter-execution-details" class="nav-link" data-scroll-target="#trade-blotter-execution-details"><span class="header-section-number">6</span> Trade Blotter &amp; Execution Details</a>
   <ul class="collapse">
@@ -570,11 +570,11 @@ Reentry Cooldown:         None (can immediately re-enter)</code></pre>
 </section>
 <section id="performance-visualizations" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="performance-visualizations"><span class="header-section-number">5</span> Performance Visualizations</h2>
-<section id="equity-curve-drawdown-analysis" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="equity-curve-drawdown-analysis"><span class="header-section-number">5.1</span> Equity Curve &amp; Drawdown Analysis</h3>
-<p>The following chart displays the cumulative P&amp;L trajectory over the entire backtest period, along with peak-to-trough drawdowns and the Z-score of the underlying asset price (from a related pairs trading analysis shown for reference).</p>
-<p><img src="backtest_performance.png" class="img-fluid"></p>
-<p><strong>Chart Interpretation</strong>: - <strong>Top Panel (Equity Curve)</strong>: Shows cumulative profit growing from $0 to $5,558 with volatility. Green shaded area highlights cumulative gains. Major peaks occur in September-October 2025 and January 2026. - <strong>Middle Panel (Drawdown)</strong>: Red underwater plot shows how deep cumulative losses dip from peaks. Largest drawdown is ~$2,856 in early January 2026, recovered within weeks. - <strong>Bottom Panel (Z-Score)</strong>: Illustrative; shows relative value signals from a complementary analysis (not directly used in ASML breakout logic).</p>
+<section id="complete-performance-dashboard" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="complete-performance-dashboard"><span class="header-section-number">5.1</span> Complete Performance Dashboard</h3>
+<p>The following comprehensive dashboard displays the ASML breakout strategy’s complete performance across four dimensions:</p>
+<p><img src="asml_breakout_performance.png" class="img-fluid"></p>
+<p><strong>Chart Interpretation</strong>: - <strong>Top Panel (Equity Curve)</strong>: Cumulative profit journey from Jan 2025 to Apr 2026. Started flat, took initial drawdown in May 2025 (first loss trade), then strong recovery in September-October with back-to-back winners, peak of ~$8,500 in January 2026, before settling to final $5,558 by April. - <strong>Middle-Left Panel (Drawdown)</strong>: Red underwater plot showing peak-to-trough declines. Largest drawdown ~$5,061 occurred in May 2025 after first stop-loss trade. Strategy recovered within 2-3 months. - <strong>Middle-Right Panel (Trade Distribution)</strong>: Histogram of all 6 trades with P&amp;L values labeled. Clear 50/50 split: 3 winners (Trade 2, 3, 5) averaging $4,537 each; 3 losers (Trade 1, 4, 6) averaging -$2,685 each. - <strong>Bottom Panel (Donchian Channels + Price Action)</strong>: ASML price (black line) with 20-day Donchian High (red dashed) and Low (green dashed). Green triangles mark entry signals; red triangles mark exits. Shows how breakout points (where price breaks above channel) align with profitable moves (trades 2, 3, 5) versus choppy moves that trigger stops (trades 1, 4, 6).</p>
 <hr>
 </section>
 </section>
