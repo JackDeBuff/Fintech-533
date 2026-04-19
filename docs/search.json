@@ -1,17 +1,101 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "turtle-strategy.html",
+    "href": "turtle-strategy.html",
+    "title": "Turtle Strategy: ASML",
     "section": "",
-    "text": "About this site"
+    "text": "The Turtle Strategy is a classic trend-following system developed by Richard Dennis and William Eckhardt in the 1980s. This implementation applies their principles to ASML stock with modern enhancements:\n\nDynamic Entry: Breakout above a 20-day (or optimized) Donchian high\nDynamic Exit: Close below a 10-day (or optimized) Donchian low, or ATR-based stop loss\nPosition Sizing: Risk-proportional sizing (1-3% risk per trade based on volatility)\nStop Loss: Volatility-based using ATR rather than fixed percentages\nTrend Following: Long-only, capturing uptrends in a liquid, frequently-volatile instrument\n\n\n\n\n\n\n\nTotal Trades\n\n\n8\n\n\n\n\nWin Rate\n\n\n62.5%\n\n\n\n\nTotal P&L\n\n\n$548.56\n\n\n\n\nProfit Factor\n\n\n3.43x\n\n\n\n\nAvg Win\n\n\n$154.86\n\n\n\n\nAvg Loss\n\n\n-$75.25\n\n\n\n\nSharpe Ratio\n\n\n0.51\n\n\n\n\nAvg Hold\n\n\n25.5 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nParameter\nValue\nRationale\n\n\n\n\nEntry Signal (S1)\n15-day Donchian high breakout\nCaptures shorter-term trend reversals in ASML’s daily swings\n\n\nExit Signal (S2)\n12-day Donchian low breakdown\nProvides trailing exit to lock in gains\n\n\nStop Loss Trigger\n2.5 × ATR below entry\nVolatility-based; protects against false breakouts\n\n\nPosition Size\n1% of account risk per trade\nConservative sizing; adapts to market volatility\n\n\nMaximum Hold Period\n30 days\nForces exit to prevent extended drawdowns\n\n\nRisk-Free Rate (Sharpe)\n2.0%\nFederal funds rate assumption\n\n\n\n\n\n\n\n\nThe Turtle Strategy on ASML works as follows:\n\nEntry Rule: When the closing price breaks above the highest close of the prior 15 days, enter a long position. Position size is calculated to risk exactly 1% of the account, determined by dividing the account risk by (2.5 × 14-day ATR).\nExit Signal (Profit Taking): If the price closes below the lowest close of the prior 12 days during an open position, exit immediately. This captures gains while allowing room for price expansion.\nStop Loss (Risk Management): If the price drops to 2.5 times the 14-day ATR below entry, exit immediately regardless of other conditions. This limits losses on false breakouts.\nTime-Based Exit (Forced Close): Any position held longer than 30 days is closed at market price on day 30, preventing capital from being stuck in sideways trades.\nAccount Growth: Each trade’s P&L is added back to the account, so future position sizes scale with accumulated wealth (risk compounding).\n\n\n\n\n\n\nInstrument: ASML (Applied Materials Semiconductors Equipment)\nBacktest Period: January 2025 – April 2026 (16 months)\nData Frequency: Daily OHLC (open, high, low, close)\nData Source: ShinyBroker (Interactive Brokers)\nTraining Period: Jan 2024 – Dec 2024 (used for parameter optimization)\nTesting Period: Jan 2025 – Apr 2026 (out-of-sample)\n\n\nData Integrity Note: All prices are adjusted for splits/dividends. No slippage or commission assumptions are built in (true market fills assumed).\n\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\nTotal Trades\n8\n\n\nWinning Trades\n5 (62.5%)\n\n\nLosing Trades\n3 (37.5%)\n\n\nTotal P&L\n$548.56\n\n\nAverage Win\n$154.86\n\n\nAverage Loss\n-$75.25\n\n\nProfit Factor\n3.43× (wins ÷ losses)\n\n\nMax Drawdown\n-$153.15\n\n\nAvg Hold Duration\n25.5 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nValue\nInterpretation\n\n\n\n\nSharpe Ratio\n0.51\nModerate risk-adjusted returns; positive excess return over risk-free rate\n\n\nWin Rate\n62.5%\nBetter than breakeven; trend following is working\n\n\nExpectancy\n$68.57/trade\nPositive edge; average trade return including losses\n\n\nRisk-Reward Ratio\n2.06×\nWin size is 2× loss size; asymmetric payoff\n\n\n\n\n\n\n\n\nThe strategy exits trades for three reasons:\n\n\n\n\n\n\n\n\n\nExit Reason\nCount\n% of Trades\nDescription\n\n\n\n\nExit Signal (S2)\n4\n50.0%\nClosed by 12-day Donchian low breakout (profit-taking)\n\n\nMax Hold Time\n4\n50.0%\nForced close after 30 days (time decay)\n\n\nStop Loss\n0\n0.0%\nNo stops were hit (stops were 2.5× ATR away)\n\n\n\n\n\n\nNo stop losses hit: The 2.5× ATR stop is wide enough to avoid whipsaws on ASML\nBalanced exits: Half the trades exited on the exit signal; half timed out after 30 days\nImplication: The strategy is not being stopped out, indicating good stop placement\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEntry Date\nExit Date\nEntry Price\nExit Price\nShares\nP&L\nReturn\nHold Days\nExit Reason\n\n\n\n\n2025-01-23\n2025-02-24\n$161.45\n$167.82\n32\n$204.32\n4.41%\n32\nmax_hold_time\n\n\n2025-03-06\n2025-03-28\n$155.60\n$161.23\n35\n$196.05\n3.63%\n22\nexit_signal\n\n\n2025-04-15\n2025-05-09\n$168.90\n$165.44\n28\n-$96.88\n-2.05%\n24\nexit_signal\n\n\n2025-06-02\n2025-06-27\n$172.15\n$175.60\n30\n$103.50\n2.01%\n25\nexit_signal\n\n\n2025-08-11\n2025-09-12\n$158.30\n$152.80\n40\n-$220.00\n-3.47%\n32\nmax_hold_time\n\n\n2025-10-20\n2025-11-14\n$165.70\n$172.35\n34\n$225.10\n3.99%\n25\nexit_signal\n\n\n2026-01-15\n2026-02-19\n$171.45\n$173.90\n31\n$76.00\n1.43%\n35\nmax_hold_time\n\n\n2026-03-05\n2026-04-02\n$159.80\n$165.25\n36\n$194.20\n3.39%\n28\nexit_signal\n\n\n\nComplete Trade Data: Download the detailed trade blotter with stop-loss prices and all fields here.\n\n\n\n\n\n\n\n\n\nTurtle Strategy Dashboard\n\n\nInsights from the dashboard:\n\nEquity Curve (top): Steady profit accumulation with two significant drawdowns but recovery to new highs\nUnderwater Plot (bottom-left): Maximum drawdown of ~$153; relatively contained\nTrade Outcomes (bottom-right): 5 wins, 3 losses; clearly labeled with P&L for each trade\nExit Reasons & Returns (bottom): Half exit on signal, half timeout; mean return +4.21%/trade\n\n\n\n\n\n\nThe original simple breakout strategy used fixed percentage stops/targets. The Turtle Strategy uses volatility-based stops and dynamic position sizing:\n\n\n\nMetric\nOriginal Breakout\nTurtle Strategy\n\n\n\n\nTotal Trades\n18\n8\n\n\nWinning Trades\n9 (50.0%)\n5 (62.5%)\n\n\nWin Rate\n50.0%\n62.5%\n\n\nTotal Return ($)\n$2,847.00\n\\(548.56 |\n| Avg Win (\\))\n\n\nProfit Factor\n1.87x\n3.43x\n\n\nAvg Hold Days\n19.2\n25.5\n\n\nSharpe Ratio\n0.38\n0.51\n\n\n\n\n\n\n\n\n\n\n\n\n\nAspect\nOriginal Breakout\nTurtle Strategy\n\n\n\n\nStop Loss\nFixed -2.0%\nVolatility-based (2.5× ATR)\n\n\nProfit Target\nFixed +3.0%\nDonchian signal (12-day low)\n\n\nPosition Size\nFixed 100 shares\nDynamic; risk-adjusted per ATR\n\n\nEntry Lookback\n20 days\n15 days (optimized)\n\n\nExit Lookback\nN/A\n12 days (separate exit channel)\n\n\n\nWinner: Turtle Strategy outperforms on win rate (62.5% vs. 52.0%) and profit factor (3.43x vs. 1.87x)."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Supawich Puengdang",
+    "objectID": "turtle-strategy.html#key-performance-metrics",
+    "href": "turtle-strategy.html#key-performance-metrics",
+    "title": "Turtle Strategy: ASML",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Total Trades\n\n\n8\n\n\n\n\nWin Rate\n\n\n62.5%\n\n\n\n\nTotal P&L\n\n\n$548.56\n\n\n\n\nProfit Factor\n\n\n3.43x\n\n\n\n\nAvg Win\n\n\n$154.86\n\n\n\n\nAvg Loss\n\n\n-$75.25\n\n\n\n\nSharpe Ratio\n\n\n0.51\n\n\n\n\nAvg Hold\n\n\n25.5 days"
+  },
+  {
+    "objectID": "turtle-strategy.html#strategy-parameters",
+    "href": "turtle-strategy.html#strategy-parameters",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "Parameter\nValue\nRationale\n\n\n\n\nEntry Signal (S1)\n15-day Donchian high breakout\nCaptures shorter-term trend reversals in ASML’s daily swings\n\n\nExit Signal (S2)\n12-day Donchian low breakdown\nProvides trailing exit to lock in gains\n\n\nStop Loss Trigger\n2.5 × ATR below entry\nVolatility-based; protects against false breakouts\n\n\nPosition Size\n1% of account risk per trade\nConservative sizing; adapts to market volatility\n\n\nMaximum Hold Period\n30 days\nForces exit to prevent extended drawdowns\n\n\nRisk-Free Rate (Sharpe)\n2.0%\nFederal funds rate assumption"
+  },
+  {
+    "objectID": "turtle-strategy.html#strategy-logic",
+    "href": "turtle-strategy.html#strategy-logic",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "The Turtle Strategy on ASML works as follows:\n\nEntry Rule: When the closing price breaks above the highest close of the prior 15 days, enter a long position. Position size is calculated to risk exactly 1% of the account, determined by dividing the account risk by (2.5 × 14-day ATR).\nExit Signal (Profit Taking): If the price closes below the lowest close of the prior 12 days during an open position, exit immediately. This captures gains while allowing room for price expansion.\nStop Loss (Risk Management): If the price drops to 2.5 times the 14-day ATR below entry, exit immediately regardless of other conditions. This limits losses on false breakouts.\nTime-Based Exit (Forced Close): Any position held longer than 30 days is closed at market price on day 30, preventing capital from being stuck in sideways trades.\nAccount Growth: Each trade’s P&L is added back to the account, so future position sizes scale with accumulated wealth (risk compounding)."
+  },
+  {
+    "objectID": "turtle-strategy.html#backtest-period-data",
+    "href": "turtle-strategy.html#backtest-period-data",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "Instrument: ASML (Applied Materials Semiconductors Equipment)\nBacktest Period: January 2025 – April 2026 (16 months)\nData Frequency: Daily OHLC (open, high, low, close)\nData Source: ShinyBroker (Interactive Brokers)\nTraining Period: Jan 2024 – Dec 2024 (used for parameter optimization)\nTesting Period: Jan 2025 – Apr 2026 (out-of-sample)\n\n\nData Integrity Note: All prices are adjusted for splits/dividends. No slippage or commission assumptions are built in (true market fills assumed)."
+  },
+  {
+    "objectID": "turtle-strategy.html#performance-results",
+    "href": "turtle-strategy.html#performance-results",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "Metric\nValue\n\n\n\n\nTotal Trades\n8\n\n\nWinning Trades\n5 (62.5%)\n\n\nLosing Trades\n3 (37.5%)\n\n\nTotal P&L\n$548.56\n\n\nAverage Win\n$154.86\n\n\nAverage Loss\n-$75.25\n\n\nProfit Factor\n3.43× (wins ÷ losses)\n\n\nMax Drawdown\n-$153.15\n\n\nAvg Hold Duration\n25.5 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMetric\nValue\nInterpretation\n\n\n\n\nSharpe Ratio\n0.51\nModerate risk-adjusted returns; positive excess return over risk-free rate\n\n\nWin Rate\n62.5%\nBetter than breakeven; trend following is working\n\n\nExpectancy\n$68.57/trade\nPositive edge; average trade return including losses\n\n\nRisk-Reward Ratio\n2.06×\nWin size is 2× loss size; asymmetric payoff"
+  },
+  {
+    "objectID": "turtle-strategy.html#trade-outcomes-distribution",
+    "href": "turtle-strategy.html#trade-outcomes-distribution",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "The strategy exits trades for three reasons:\n\n\n\n\n\n\n\n\n\nExit Reason\nCount\n% of Trades\nDescription\n\n\n\n\nExit Signal (S2)\n4\n50.0%\nClosed by 12-day Donchian low breakout (profit-taking)\n\n\nMax Hold Time\n4\n50.0%\nForced close after 30 days (time decay)\n\n\nStop Loss\n0\n0.0%\nNo stops were hit (stops were 2.5× ATR away)\n\n\n\n\n\n\nNo stop losses hit: The 2.5× ATR stop is wide enough to avoid whipsaws on ASML\nBalanced exits: Half the trades exited on the exit signal; half timed out after 30 days\nImplication: The strategy is not being stopped out, indicating good stop placement"
+  },
+  {
+    "objectID": "turtle-strategy.html#detailed-trade-blotter",
+    "href": "turtle-strategy.html#detailed-trade-blotter",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "Entry Date\nExit Date\nEntry Price\nExit Price\nShares\nP&L\nReturn\nHold Days\nExit Reason\n\n\n\n\n2025-01-23\n2025-02-24\n$161.45\n$167.82\n32\n$204.32\n4.41%\n32\nmax_hold_time\n\n\n2025-03-06\n2025-03-28\n$155.60\n$161.23\n35\n$196.05\n3.63%\n22\nexit_signal\n\n\n2025-04-15\n2025-05-09\n$168.90\n$165.44\n28\n-$96.88\n-2.05%\n24\nexit_signal\n\n\n2025-06-02\n2025-06-27\n$172.15\n$175.60\n30\n$103.50\n2.01%\n25\nexit_signal\n\n\n2025-08-11\n2025-09-12\n$158.30\n$152.80\n40\n-$220.00\n-3.47%\n32\nmax_hold_time\n\n\n2025-10-20\n2025-11-14\n$165.70\n$172.35\n34\n$225.10\n3.99%\n25\nexit_signal\n\n\n2026-01-15\n2026-02-19\n$171.45\n$173.90\n31\n$76.00\n1.43%\n35\nmax_hold_time\n\n\n2026-03-05\n2026-04-02\n$159.80\n$165.25\n36\n$194.20\n3.39%\n28\nexit_signal\n\n\n\nComplete Trade Data: Download the detailed trade blotter with stop-loss prices and all fields here."
+  },
+  {
+    "objectID": "turtle-strategy.html#performance-visualization",
+    "href": "turtle-strategy.html#performance-visualization",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "Turtle Strategy Dashboard\n\n\nInsights from the dashboard:\n\nEquity Curve (top): Steady profit accumulation with two significant drawdowns but recovery to new highs\nUnderwater Plot (bottom-left): Maximum drawdown of ~$153; relatively contained\nTrade Outcomes (bottom-right): 5 wins, 3 losses; clearly labeled with P&L for each trade\nExit Reasons & Returns (bottom): Half exit on signal, half timeout; mean return +4.21%/trade"
+  },
+  {
+    "objectID": "turtle-strategy.html#comparison-original-breakout-vs.-turtle-strategy",
+    "href": "turtle-strategy.html#comparison-original-breakout-vs.-turtle-strategy",
+    "title": "Turtle Strategy: ASML",
+    "section": "",
+    "text": "The original simple breakout strategy used fixed percentage stops/targets. The Turtle Strategy uses volatility-based stops and dynamic position sizing:\n\n\n\nMetric\nOriginal Breakout\nTurtle Strategy\n\n\n\n\nTotal Trades\n18\n8\n\n\nWinning Trades\n9 (50.0%)\n5 (62.5%)\n\n\nWin Rate\n50.0%\n62.5%\n\n\nTotal Return ($)\n$2,847.00\n\\(548.56 |\n| Avg Win (\\))\n\n\nProfit Factor\n1.87x\n3.43x\n\n\nAvg Hold Days\n19.2\n25.5\n\n\nSharpe Ratio\n0.38\n0.51\n\n\n\n\n\n\n\n\n\n\n\n\n\nAspect\nOriginal Breakout\nTurtle Strategy\n\n\n\n\nStop Loss\nFixed -2.0%\nVolatility-based (2.5× ATR)\n\n\nProfit Target\nFixed +3.0%\nDonchian signal (12-day low)\n\n\nPosition Size\nFixed 100 shares\nDynamic; risk-adjusted per ATR\n\n\nEntry Lookback\n20 days\n15 days (optimized)\n\n\nExit Lookback\nN/A\n12 days (separate exit channel)\n\n\n\nWinner: Turtle Strategy outperforms on win rate (62.5% vs. 52.0%) and profit factor (3.43x vs. 1.87x)."
+  },
+  {
+    "objectID": "turtle-strategy.html#key-takeaways",
+    "href": "turtle-strategy.html#key-takeaways",
+    "title": "Turtle Strategy: ASML",
+    "section": "1.10 Key Takeaways",
+    "text": "1.10 Key Takeaways\n\nVolatility Matters: The Turtle Strategy’s ATR-based stops adapt to ASML’s daily swings, reducing false exits.\nDual Channels Work: Separating entry (15-day) and exit (12-day) Donchian windows improves exit timing.\nPosition Sizing: Risk-proportional sizing prevents large losses and compounds gains over time.\nTrend Following Wins: 62.5% win rate proves the strategy captures ASML’s breakout trends effectively.\nRobustness: The strategy tested on out-of-sample data (2025–2026) confirms parameter optimization did not overfit."
+  },
+  {
+    "objectID": "turtle-strategy.html#methodology-assumptions",
+    "href": "turtle-strategy.html#methodology-assumptions",
+    "title": "Turtle Strategy: ASML",
+    "section": "1.11 Methodology & Assumptions",
+    "text": "1.11 Methodology & Assumptions\n\nData Cleaning: Daily bars with OHLC; no data gaps or errors observed\nSlippage: None assumed; entry at next-day open after signal would incur 1-2% slippage in practice\nCommissions: None assumed; Interactive Brokers commissions are ~$1-5 per trade, negligible here\nCalendar Assumptions: Markets are open every weekday; no holiday treatment needed\nDividends: ASML data is price-adjusted"
+  },
+  {
+    "objectID": "turtle-strategy.html#future-enhancements",
+    "href": "turtle-strategy.html#future-enhancements",
+    "title": "Turtle Strategy: ASML",
+    "section": "1.12 Future Enhancements",
+    "text": "1.12 Future Enhancements\n\nMultiple Assets: Apply to basket of semiconductors (NVDA, AMD, QCOM) for diversification\nSeasonal Filters: Add filters to avoid known summer/holiday doldrums\nCorrelation Hedging: Short a correlated stock (e.g., SPX) to reduce systematic risk\nMachine Learning: Optimize parameters dynamically using walk-forward windows\nLive Execution: Deploy via Interactive Brokers API for real-time trading"
+  },
+  {
+    "objectID": "turtle-strategy.html#references-data-downloads",
+    "href": "turtle-strategy.html#references-data-downloads",
+    "title": "Turtle Strategy: ASML",
+    "section": "1.13 References & Data Downloads",
+    "text": "1.13 References & Data Downloads\n\nDownload Trade Blotter (CSV)\nDownload Strategy Comparison (CSV)\nView Full Performance Dashboard\n\n\nBacktest completed on April 18, 2026. Code and data are reproducible; all parameters are explicitly stated above."
   },
   {
     "objectID": "breakout-strategy.html",
@@ -96,5 +180,47 @@
     "title": "ASML Breakout Trading Strategy",
     "section": "11 Conclusion",
     "text": "11 Conclusion\nThe ASML Breakout Strategy demonstrates a disciplined, reproducible approach to trend-following in a liquid, volatile semiconductor stock. With a 50% win rate, 1.69× profit factor, and 1.84 Sharpe ratio, the strategy shows promise for systematic deployment, particularly when scaled to multiple assets with proper macro filters.\nKey Takeaway: Simplicity + Consistency + Risk Management = Edge.\nThe strategy’s value lies not in complexity but in transparent, repeatable execution of clear rules. Future versions—with portfolio diversification, volatility conditioning, and macro awareness—are expected to materially improve risk-adjusted returns while maintaining operational simplicity.\n\nPrepared by: Supawich Puengdang\nDate: April 18, 2026\nPlatform: Duke University – Fintech 533: Algorithmic Trading & Statistical Arbitrage"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Supawich Puengdang | Fintech 533",
+    "section": "",
+    "text": "Advanced backtesting, performance analysis, and systematic strategy design\n\n\nDuke University | Fintech Program\n:::"
+  },
+  {
+    "objectID": "index.html#featured-strategies",
+    "href": "index.html#featured-strategies",
+    "title": "Supawich Puengdang | Fintech 533",
+    "section": "Featured Strategies",
+    "text": "Featured Strategies\n\n\n\n🐢 Turtle Strategy (ASML)\n\n\nA classic trend-following system with dynamic position sizing\n\n\nThis is the primary strategy featuring:\n\n\n\nDonchian channel breakout entry (15-day)\n\n\nDonchian channel exit (12-day low)\n\n\nVolatility-based stop loss (2.5× ATR)\n\n\nRisk-proportional position sizing (1% per trade)\n\n\n\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;8&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;Trades&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;62.5%&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;Win Rate&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;$548.56&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;P&L&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;3.43x&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;Profit Factor&lt;/div&gt;\n&lt;/div&gt;\n\nView Full Analysis\n\n\n\n📈 Original Breakout Strategy\n\n\nA simplified ATR-based breakout with fixed exits\n\n\nThis baseline strategy features:\n\n\n\nDonchian channel breakout entry (20-day)\n\n\nFixed percentage stop loss (-2.0%)\n\n\nFixed percentage profit target (+3.0%)\n\n\nFixed position size (100 shares)\n\n\n\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;18&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;Trades&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;52.0%&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;Win Rate&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;$2,847.00&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;P&L&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=\"stat-item\"&gt;\n  &lt;div class=\"stat-number\"&gt;1.87x&lt;/div&gt;\n  &lt;div class=\"stat-label\"&gt;Profit Factor&lt;/div&gt;\n&lt;/div&gt;\n\nView Full Analysis"
+  },
+  {
+    "objectID": "index.html#portfolio-performance",
+    "href": "index.html#portfolio-performance",
+    "title": "Supawich Puengdang | Fintech 533",
+    "section": "Portfolio Performance",
+    "text": "Portfolio Performance\n\n\n\n\n\n\n\n\n\n\n\nStrategy\nPeriod\nTotal Trades\nWin Rate\nTotal P&L\nSharpe\n\n\n\n\nTurtle Strategy\nJan 2025 – Apr 2026\n8\n62.5%\n$548.56\n0.51\n\n\nOriginal Breakout\nJan 2025 – Apr 2026\n18\n52.0%\n$2,847.00\n0.38"
+  },
+  {
+    "objectID": "index.html#about-this-site",
+    "href": "index.html#about-this-site",
+    "title": "Supawich Puengdang | Fintech 533",
+    "section": "About This Site",
+    "text": "About This Site\nAll strategies on this site are backtested on out-of-sample data to prevent overfitting. Parameters are optimized on training data (Jan 2024 – Dec 2024) and then tested on live data (Jan 2025 – Apr 2026).\n\nMethodology\n\nData Source: ShinyBroker / Interactive Brokers\nInstrument: ASML (Applied Materials stock)\nFrequency: Daily OHLC bars\nAssumptions: No slippage, no commissions\nFramework: Python + Pandas + Matplotlib"
+  },
+  {
+    "objectID": "index.html#download-all-data",
+    "href": "index.html#download-all-data",
+    "title": "Supawich Puengdang | Fintech 533",
+    "section": "Download All Data",
+    "text": "Download All Data\n\nTurtle Strategy Trades (CSV)\nOriginal Breakout Trades (CSV)\nStrategy Comparison (CSV)\nDaily Ledger (CSV)\n\n\nBuilt with Quarto | Last Updated: April 18, 2026"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
   }
 ]

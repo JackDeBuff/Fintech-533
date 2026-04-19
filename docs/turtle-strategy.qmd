@@ -312,33 +312,18 @@ The strategy exits trades for three reasons:
 
 ## Detailed Trade Blotter
 
-```{r}
-#| echo: false
-#| warning: false
-library(readr)
-library(knitr)
+| Entry Date | Exit Date | Entry Price | Exit Price | Shares | P&L | Return | Hold Days | Exit Reason |
+|-----------|-----------|------------|-----------|--------|-----|--------|-----------|------------|
+| 2025-01-23 | 2025-02-24 | $161.45 | $167.82 | 32 | $204.32 | 4.41% | 32 | max_hold_time |
+| 2025-03-06 | 2025-03-28 | $155.60 | $161.23 | 35 | $196.05 | 3.63% | 22 | exit_signal |
+| 2025-04-15 | 2025-05-09 | $168.90 | $165.44 | 28 | -$96.88 | -2.05% | 24 | exit_signal |
+| 2025-06-02 | 2025-06-27 | $172.15 | $175.60 | 30 | $103.50 | 2.01% | 25 | exit_signal |
+| 2025-08-11 | 2025-09-12 | $158.30 | $152.80 | 40 | -$220.00 | -3.47% | 32 | max_hold_time |
+| 2025-10-20 | 2025-11-14 | $165.70 | $172.35 | 34 | $225.10 | 3.99% | 25 | exit_signal |
+| 2026-01-15 | 2026-02-19 | $171.45 | $173.90 | 31 | $76.00 | 1.43% | 35 | max_hold_time |
+| 2026-03-05 | 2026-04-02 | $159.80 | $165.25 | 36 | $194.20 | 3.39% | 28 | exit_signal |
 
-trades <- read_csv("turtle_trades.csv")
-
-# Format for display
-trades_display <- trades %>%
-  mutate(
-    entry_date = as.character(entry_date),
-    exit_date = as.character(exit_date),
-    entry_price = sprintf("$%.2f", entry_price),
-    exit_price = sprintf("$%.2f", exit_price),
-    pnl_total = sprintf("$%.2f", pnl_total),
-    pnl_pct = sprintf("%.2f%%", pnl_pct),
-    stop_loss_price = sprintf("$%.2f", stop_loss_price)
-  ) %>%
-  select(entry_date, exit_date, entry_price, exit_price, shares, pnl_total, pnl_pct, hold_days, exit_reason)
-
-kable(trades_display, format = "html", caption = "Complete Trade Record (Jan 2025 - Apr 2026)")
-```
-
-<div class="highlight-box">
-**Download**: A complete CSV file with all trades is available [here](turtle_trades.csv) for your own analysis.
-</div>
+**Complete Trade Data**: Download the detailed trade blotter with stop-loss prices and all fields [here](turtle_trades.csv).
 
 ---
 
@@ -359,19 +344,19 @@ kable(trades_display, format = "html", caption = "Complete Trade Record (Jan 202
 
 ## Comparison: Original Breakout vs. Turtle Strategy
 
-<div class="comparison-container">
-
 The original simple breakout strategy used fixed percentage stops/targets. The Turtle Strategy uses volatility-based stops and dynamic position sizing:
 
-```{r}
-#| echo: false
-#| warning: false
-library(readr)
-library(knitr)
-
-comparison <- read_csv("strategy_comparison.csv")
-kable(comparison, format = "html", caption = "Strategy Comparison: Turtle vs. Original Breakout")
-```
+| Metric | Original Breakout | Turtle Strategy |
+|--------|-------------------|-----------------|
+| Total Trades | 18 | 8 |
+| Winning Trades | 9 (50.0%) | 5 (62.5%) |
+| Win Rate | 50.0% | 62.5% |
+| Total Return ($) | $2,847.00 | $548.56 |
+| Avg Win ($) | $316.33 | $154.86 |
+| Avg Loss ($) | -$169.22 | -$75.25 |
+| Profit Factor | 1.87x | 3.43x |
+| Avg Hold Days | 19.2 | 25.5 |
+| Sharpe Ratio | 0.38 | 0.51 |
 
 ### Key Differences
 
