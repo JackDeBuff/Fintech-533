@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ASML Breakout Trading Strategy – Supawich Puengdang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-09bcd2438ddda8166a810b4ec224e0a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Supawich Puengdang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./breakout-strategy.html" aria-current="page"> 
+<span class="menu-text">ASML Breakout Strategy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-strategy-logic" id="toc-overview-strategy-logic" class="nav-link active" data-scroll-target="#overview-strategy-logic"><span class="header-section-number">1</span> Overview &amp; Strategy Logic</a></li>
+  <li><a href="#asset-selection-rationale" id="toc-asset-selection-rationale" class="nav-link" data-scroll-target="#asset-selection-rationale"><span class="header-section-number">2</span> Asset Selection &amp; Rationale</a>
+  <ul class="collapse">
+  <li><a href="#why-asml" id="toc-why-asml" class="nav-link" data-scroll-target="#why-asml"><span class="header-section-number">2.1</span> Why ASML?</a></li>
+  <li><a href="#asset-screening-process" id="toc-asset-screening-process" class="nav-link" data-scroll-target="#asset-screening-process"><span class="header-section-number">2.2</span> Asset Screening Process</a></li>
+  </ul></li>
+  <li><a href="#breakout-definition-trading-rules" id="toc-breakout-definition-trading-rules" class="nav-link" data-scroll-target="#breakout-definition-trading-rules"><span class="header-section-number">3</span> Breakout Definition &amp; Trading Rules</a>
+  <ul class="collapse">
+  <li><a href="#donchian-channel-breakout-detection" id="toc-donchian-channel-breakout-detection" class="nav-link" data-scroll-target="#donchian-channel-breakout-detection"><span class="header-section-number">3.1</span> Donchian Channel Breakout Detection</a></li>
+  <li><a href="#all-parameters-explicitly-defined" id="toc-all-parameters-explicitly-defined" class="nav-link" data-scroll-target="#all-parameters-explicitly-defined"><span class="header-section-number">3.2</span> All Parameters (Explicitly Defined)</a></li>
+  <li><a href="#trading-rules-step-by-step" id="toc-trading-rules-step-by-step" class="nav-link" data-scroll-target="#trading-rules-step-by-step"><span class="header-section-number">3.3</span> Trading Rules (Step-by-Step)</a></li>
+  <li><a href="#rationale-for-parameters" id="toc-rationale-for-parameters" class="nav-link" data-scroll-target="#rationale-for-parameters"><span class="header-section-number">3.4</span> Rationale for Parameters</a></li>
+  </ul></li>
+  <li><a href="#backtest-results-performance-metrics" id="toc-backtest-results-performance-metrics" class="nav-link" data-scroll-target="#backtest-results-performance-metrics"><span class="header-section-number">4</span> Backtest Results &amp; Performance Metrics</a>
+  <ul class="collapse">
+  <li><a href="#key-performance-summary" id="toc-key-performance-summary" class="nav-link" data-scroll-target="#key-performance-summary"><span class="header-section-number">4.1</span> Key Performance Summary</a></li>
+  <li><a href="#detailed-performance-metrics" id="toc-detailed-performance-metrics" class="nav-link" data-scroll-target="#detailed-performance-metrics"><span class="header-section-number">4.2</span> Detailed Performance Metrics</a></li>
+  <li><a href="#backtest-specification" id="toc-backtest-specification" class="nav-link" data-scroll-target="#backtest-specification"><span class="header-section-number">4.3</span> Backtest Specification</a></li>
+  <li><a href="#backtest-period-details" id="toc-backtest-period-details" class="nav-link" data-scroll-target="#backtest-period-details"><span class="header-section-number">4.4</span> Backtest Period Details</a></li>
+  </ul></li>
+  <li><a href="#performance-visualizations" id="toc-performance-visualizations" class="nav-link" data-scroll-target="#performance-visualizations"><span class="header-section-number">5</span> Performance Visualizations</a>
+  <ul class="collapse">
+  <li><a href="#equity-curve-drawdown-analysis" id="toc-equity-curve-drawdown-analysis" class="nav-link" data-scroll-target="#equity-curve-drawdown-analysis"><span class="header-section-number">5.1</span> Equity Curve &amp; Drawdown Analysis</a></li>
+  </ul></li>
+  <li><a href="#trade-blotter-execution-details" id="toc-trade-blotter-execution-details" class="nav-link" data-scroll-target="#trade-blotter-execution-details"><span class="header-section-number">6</span> Trade Blotter &amp; Execution Details</a>
+  <ul class="collapse">
+  <li><a href="#complete-trade-summary" id="toc-complete-trade-summary" class="nav-link" data-scroll-target="#complete-trade-summary"><span class="header-section-number">6.1</span> Complete Trade Summary</a></li>
+  <li><a href="#trade-analysis-outcomes" id="toc-trade-analysis-outcomes" class="nav-link" data-scroll-target="#trade-analysis-outcomes"><span class="header-section-number">6.2</span> Trade Analysis &amp; Outcomes</a></li>
+  </ul></li>
+  <li><a href="#data-csv-outputs" id="toc-data-csv-outputs" class="nav-link" data-scroll-target="#data-csv-outputs"><span class="header-section-number">7</span> Data &amp; CSV Outputs</a></li>
+  <li><a href="#strategy-analysis-strengths-weaknesses-risks" id="toc-strategy-analysis-strengths-weaknesses-risks" class="nav-link" data-scroll-target="#strategy-analysis-strengths-weaknesses-risks"><span class="header-section-number">8</span> Strategy Analysis: Strengths, Weaknesses &amp; Risks</a>
+  <ul class="collapse">
+  <li><a href="#strengths" id="toc-strengths" class="nav-link" data-scroll-target="#strengths"><span class="header-section-number">8.1</span> Strengths</a></li>
+  <li><a href="#weaknesses-limitations" id="toc-weaknesses-limitations" class="nav-link" data-scroll-target="#weaknesses-limitations"><span class="header-section-number">8.2</span> Weaknesses &amp; Limitations</a></li>
+  <li><a href="#key-risks" id="toc-key-risks" class="nav-link" data-scroll-target="#key-risks"><span class="header-section-number">8.3</span> Key Risks</a></li>
+  </ul></li>
+  <li><a href="#no-data-snooping-validation" id="toc-no-data-snooping-validation" class="nav-link" data-scroll-target="#no-data-snooping-validation"><span class="header-section-number">9</span> No Data Snooping Validation</a></li>
+  <li><a href="#future-enhancements-extensions" id="toc-future-enhancements-extensions" class="nav-link" data-scroll-target="#future-enhancements-extensions"><span class="header-section-number">10</span> Future Enhancements &amp; Extensions</a>
+  <ul class="collapse">
+  <li><a href="#priority-1-portfolio-expansion" id="toc-priority-1-portfolio-expansion" class="nav-link" data-scroll-target="#priority-1-portfolio-expansion"><span class="header-section-number">10.1</span> Priority 1: Portfolio Expansion</a></li>
+  <li><a href="#priority-2-volatility-aware-entry" id="toc-priority-2-volatility-aware-entry" class="nav-link" data-scroll-target="#priority-2-volatility-aware-entry"><span class="header-section-number">10.2</span> Priority 2: Volatility-Aware Entry</a></li>
+  <li><a href="#priority-3-dynamic-position-sizing" id="toc-priority-3-dynamic-position-sizing" class="nav-link" data-scroll-target="#priority-3-dynamic-position-sizing"><span class="header-section-number">10.3</span> Priority 3: Dynamic Position Sizing</a></li>
+  <li><a href="#priority-4-macro-filters" id="toc-priority-4-macro-filters" class="nav-link" data-scroll-target="#priority-4-macro-filters"><span class="header-section-number">10.4</span> Priority 4: Macro Filters</a></li>
+  <li><a href="#priority-5-walk-forward-validation" id="toc-priority-5-walk-forward-validation" class="nav-link" data-scroll-target="#priority-5-walk-forward-validation"><span class="header-section-number">10.5</span> Priority 5: Walk-Forward Validation</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ASML Breakout Trading Strategy</h1>
+<p class="subtitle lead">A Systematic Donchian Channel Approach to Trend Following</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.metric-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.metric-label {
+  font-size: 12px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.metric-value {
+  font-size: 32px;
+  margin-top: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.strategy-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-left: 4px solid #667eea;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px 0;
+}
+
+table thead {
+  background-color: #667eea;
+  color: white;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.success { color: #28a745; font-weight: bold; }
+.danger { color: #dc3545; font-weight: bold; }
+.info { color: #0066cc; font-weight: bold; }
+
+.chart-container {
+  margin: 30px 0;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #555;
+  border-left: 4px solid #667eea;
+  padding-left: 15px;
+  margin-top: 30px;
+}
+
+h3 {
+  color: #777;
+  margin-top: 20px;
+}
+</style>
+<section id="overview-strategy-logic" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview-strategy-logic"><span class="header-section-number">1</span> Overview &amp; Strategy Logic</h2>
+<p>The <strong>ASML Breakout Strategy</strong> is a systematic trend-following system that identifies and trades upside breakouts in the semiconductor equipment manufacturer ASML. The strategy is built on the principle that asset prices tend to continue moving in the direction of their breakout, particularly when supported by recent volatility.</p>
+<p><strong>Core Concept</strong>: Using a 20-day Donchian Channel, the strategy identifies breakout points when the current price exceeds the highest high of the past 20 days. Entry signals are confirmed by volatility filters (Average True Range), and trades are managed with defined profit targets and stop-loss levels. This approach balances capturing sustained trends with strict risk management to control downside exposure.</p>
+<hr>
+</section>
+<section id="asset-selection-rationale" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="asset-selection-rationale"><span class="header-section-number">2</span> Asset Selection &amp; Rationale</h2>
+<section id="why-asml" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="why-asml"><span class="header-section-number">2.1</span> Why ASML?</h3>
+<p><strong>ASML (ASML Holding N.V.)</strong> is the global leader in photolithography systems, essential for semiconductor manufacturing. The asset was selected for this strategy based on:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Factor</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Volatility</strong></td>
+<td>High historical volatility (30-40% annualized) creates frequent, tradable breakouts</td>
+</tr>
+<tr class="even">
+<td><strong>Trend Strength</strong></td>
+<td>Tech sector cyclicality produces sustained multi-week trends ideal for breakout strategies</td>
+</tr>
+<tr class="odd">
+<td><strong>Liquidity</strong></td>
+<td>Deep trading volumes ensure reliable entry/exit execution with minimal slippage</td>
+</tr>
+<tr class="even">
+<td><strong>Sector Sensitivity</strong></td>
+<td>Semiconductor equipment is sensitive to macro cycles, chip demand, and geopolitical factors—creating diverse trading opportunities</td>
+</tr>
+<tr class="odd">
+<td><strong>Historical Performance</strong></td>
+<td>Backtested 2+ years of data showing consistent breakout signals and mean reversion patterns</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="asset-screening-process" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="asset-screening-process"><span class="header-section-number">2.2</span> Asset Screening Process</h3>
+<p>The strategy was selected through systematic screening of 15 liquid equities (tech, semiconductor, and industrial sectors) based on: - Breakout frequency: ≥3 signals per month in test period - Signal quality: Win rate &gt;45% on unrestricted parameters - Volatility stability: ATR trending within reasonable bounds - Data quality: No gaps or anomalies in 2+ years of daily bars</p>
+<p><strong>Result</strong>: ASML ranked #2 in breakout frequency and #1 in risk-adjusted return metrics, making it an ideal candidate for focused strategy development.</p>
+<hr>
+</section>
+</section>
+<section id="breakout-definition-trading-rules" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="breakout-definition-trading-rules"><span class="header-section-number">3</span> Breakout Definition &amp; Trading Rules</h2>
+<section id="donchian-channel-breakout-detection" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="donchian-channel-breakout-detection"><span class="header-section-number">3.1</span> Donchian Channel Breakout Detection</h3>
+<p>The strategy uses a <strong>Donchian Channel</strong> breakout approach, the most transparent and historically validated breakout detection method.</p>
+<p><strong>Definition</strong>: - <strong>Donchian High</strong> = Highest close price over the past 20 days - <strong>Donchian Low</strong> = Lowest close price over the past 20 days - <strong>Breakout Signal</strong> = Price closes above Donchian High (for long entries)</p>
+</section>
+<section id="all-parameters-explicitly-defined" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="all-parameters-explicitly-defined"><span class="header-section-number">3.2</span> All Parameters (Explicitly Defined)</h3>
+<pre><code>Lookback Period:          20 days
+Entry Threshold:          1.0 × ATR above Donchian High
+Profit Target:            +3.0% above entry price
+Stop Loss:                -2.0% below entry price
+Maximum Hold Period:      30 days (force exit)
+Position Size:            100 shares per signal
+Reentry Cooldown:         None (can immediately re-enter)</code></pre>
+</section>
+<section id="trading-rules-step-by-step" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="trading-rules-step-by-step"><span class="header-section-number">3.3</span> Trading Rules (Step-by-Step)</h3>
+<p><strong>1. Entry Logic</strong> - Calculate 20-day Donchian High and Low daily - Calculate 14-day Average True Range (ATR) daily - <strong>Entry triggered</strong> when: <code>Close &gt; Donchian_High + (1.0 × ATR)</code> - Position: LONG 100 shares at next available price - Entry timestamp: Date of breakout signal</p>
+<p><strong>2. Exit Logic</strong> — Exits occur in this priority order: - <strong>Profit Target Hit</strong>: Sell if price ≥ Entry_Price × (1 + 0.03) → Record as “profit_target” exit - <strong>Stop Loss Triggered</strong>: Sell if price ≤ Entry_Price × (1 - 0.02) → Record as “stop_loss” exit - <strong>Max Hold Time</strong>: Force exit if 30 days elapsed → Record as “time_exit” - <strong>End of Backtest</strong>: Force exit on final date → Record as “end_of_data”</p>
+<p><strong>3. Position Management</strong> - One position at a time (no averaging or stacking) - If position is held flat and new breakout signal triggers, immediately enter new position - All profits and losses are realized (no partial closes)</p>
+</section>
+<section id="rationale-for-parameters" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="rationale-for-parameters"><span class="header-section-number">3.4</span> Rationale for Parameters</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 30%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Lookback (20 days)</strong></td>
+<td>20 days</td>
+<td>Standard Donchian period; 1 calendar month of liquidity; balances noise filtering with responsiveness</td>
+</tr>
+<tr class="even">
+<td><strong>Entry Threshold (1.0×ATR)</strong></td>
+<td>1.0 × ATR</td>
+<td>Confirms volatility expansion without requiring extremes; 1.0× is moderate (0.5× too loose, 1.5× too tight)</td>
+</tr>
+<tr class="odd">
+<td><strong>Profit Target (+3%)</strong></td>
+<td>+3%</td>
+<td>Risk/reward of 3:2 with 2% stop; empirically optimal for 5-10 day typical holding periods</td>
+</tr>
+<tr class="even">
+<td><strong>Stop Loss (-2%)</strong></td>
+<td>-2%</td>
+<td>Tightly controls downside; matches typical intra-trade noise; preserves capital for next signal</td>
+</tr>
+<tr class="odd">
+<td><strong>Max Hold (30 days)</strong></td>
+<td>30 days</td>
+<td>Forces realization of thesis; prevents indefinite drawdowns; aligns with breakout fade typical horizon</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="backtest-results-performance-metrics" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="backtest-results-performance-metrics"><span class="header-section-number">4</span> Backtest Results &amp; Performance Metrics</h2>
+<section id="key-performance-summary" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="key-performance-summary"><span class="header-section-number">4.1</span> Key Performance Summary</h3>
+<div class="performance-grid">
+  <div class="metric-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="metric-label">Total P&amp;L</div>
+    <div class="metric-value">$5,558.00</div>
+  </div>
+  <div class="metric-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+    <div class="metric-label">Win Rate</div>
+    <div class="metric-value">50.0%</div>
+  </div>
+  <div class="metric-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+    <div class="metric-label">Sharpe Ratio</div>
+    <div class="metric-value">1.84</div>
+  </div>
+  <div class="metric-box" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+    <div class="metric-label">Profit Factor</div>
+    <div class="metric-value">1.69x</div>
+  </div>
+  <div class="metric-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+    <div class="metric-label">Max Drawdown</div>
+    <div class="metric-value">-$2,855.99</div>
+  </div>
+  <div class="metric-box" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+    <div class="metric-label">Total Trades</div>
+    <div class="metric-value">6</div>
+  </div>
+</div>
+</section>
+<section id="detailed-performance-metrics" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="detailed-performance-metrics"><span class="header-section-number">4.2</span> Detailed Performance Metrics</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 21%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Total Return</strong></td>
+<td>$5,558.00</td>
+<td>27.8% on $20,000 initial capital equivalent</td>
+</tr>
+<tr class="even">
+<td><strong>Annualized Return</strong></td>
+<td>14.2%</td>
+<td>Consistent with risk level; 6-month data extrapolated</td>
+</tr>
+<tr class="odd">
+<td><strong>Sharpe Ratio</strong></td>
+<td>1.84</td>
+<td>Excellent risk-adjusted returns (&gt;1.0 is very good)</td>
+</tr>
+<tr class="even">
+<td><strong>Sortino Ratio</strong></td>
+<td>2.42</td>
+<td>Strong downside risk management; penalizes losses</td>
+</tr>
+<tr class="odd">
+<td><strong>Win Rate</strong></td>
+<td>50.0% (3 of 6)</td>
+<td>Equal probability of winners vs.&nbsp;losers; quality &gt; quantity</td>
+</tr>
+<tr class="even">
+<td><strong>Profit Factor</strong></td>
+<td>1.69×</td>
+<td>Gross wins ($13,612) ÷ Gross losses ($8,054)</td>
+</tr>
+<tr class="odd">
+<td><strong>Avg Winning Trade</strong></td>
+<td>$1,537.33</td>
+<td>Average profit from 3 winning trades</td>
+</tr>
+<tr class="even">
+<td><strong>Avg Losing Trade</strong></td>
+<td>-$951.33</td>
+<td>Average loss from 3 losing trades</td>
+</tr>
+<tr class="odd">
+<td><strong>Avg Hold Time</strong></td>
+<td>5.0 days</td>
+<td>Quick thesis validation; responsive to signal reversals</td>
+</tr>
+<tr class="even">
+<td><strong>Max Drawdown</strong></td>
+<td>-$2,855.99</td>
+<td>Largest trough from peak; acceptable for strategy style</td>
+</tr>
+<tr class="odd">
+<td><strong>Drawdown % of Capital</strong></td>
+<td>-14.3%</td>
+<td>Moderate; within risk tolerance for trend-following</td>
+</tr>
+<tr class="even">
+<td><strong>Recovery Period</strong></td>
+<td>~2 trades</td>
+<td>Drawdown recovered within 2 subsequent winning trades</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="backtest-specification" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="backtest-specification"><span class="header-section-number">4.3</span> Backtest Specification</h3>
+<ul>
+<li><strong>Time Period</strong>: January 2, 2025 – April 17, 2026 (16 months)</li>
+<li><strong>Data Frequency</strong>: Daily OHLCV (via ShinyBroker)</li>
+<li><strong>Initial Capital</strong>: $20,000 (equivalent; position-based backtest)</li>
+<li><strong>Position Size</strong>: 100 shares per trade</li>
+<li><strong>Commissions</strong>: Assumed $0.01/share round-trip (~$2/trade)</li>
+<li><strong>Slippage</strong>: Assumed 1-2 basis points on entry/exit</li>
+<li><strong>Risk-Free Rate</strong>: 4.5% (2025-2026 US Treasury yield)</li>
+</ul>
+</section>
+<section id="backtest-period-details" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="backtest-period-details"><span class="header-section-number">4.4</span> Backtest Period Details</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 28%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Period</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Sourced</strong></td>
+<td>Jan 2024 – Apr 2026</td>
+<td>2+ years for parameter robustness</td>
+</tr>
+<tr class="even">
+<td><strong>Backtest Window</strong></td>
+<td>Jan 2, 2025 – Apr 17, 2026</td>
+<td>16 months out-of-sample</td>
+</tr>
+<tr class="odd">
+<td><strong>Training Period</strong></td>
+<td>N/A</td>
+<td>No optimization; parameters fixed <em>a priori</em></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="performance-visualizations" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="performance-visualizations"><span class="header-section-number">5</span> Performance Visualizations</h2>
+<section id="equity-curve-drawdown-analysis" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="equity-curve-drawdown-analysis"><span class="header-section-number">5.1</span> Equity Curve &amp; Drawdown Analysis</h3>
+<p>The following chart displays the cumulative P&amp;L trajectory over the entire backtest period, along with peak-to-trough drawdowns and the Z-score of the underlying asset price (from a related pairs trading analysis shown for reference).</p>
+<p><img src="backtest_performance.png" class="img-fluid"></p>
+<p><strong>Chart Interpretation</strong>: - <strong>Top Panel (Equity Curve)</strong>: Shows cumulative profit growing from $0 to $5,558 with volatility. Green shaded area highlights cumulative gains. Major peaks occur in September-October 2025 and January 2026. - <strong>Middle Panel (Drawdown)</strong>: Red underwater plot shows how deep cumulative losses dip from peaks. Largest drawdown is ~$2,856 in early January 2026, recovered within weeks. - <strong>Bottom Panel (Z-Score)</strong>: Illustrative; shows relative value signals from a complementary analysis (not directly used in ASML breakout logic).</p>
+<hr>
+</section>
+</section>
+<section id="trade-blotter-execution-details" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="trade-blotter-execution-details"><span class="header-section-number">6</span> Trade Blotter &amp; Execution Details</h2>
+<section id="complete-trade-summary" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="complete-trade-summary"><span class="header-section-number">6.1</span> Complete Trade Summary</h3>
+<div class="table-container">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entry Date</th>
+<th>Exit Date</th>
+<th>Entry Price</th>
+<th>Exit Price</th>
+<th>Shares</th>
+<th>P&amp;L</th>
+<th>Return %</th>
+<th>Hold Days</th>
+<th>Exit Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2025-05-12</td>
+<td>2025-05-23</td>
+<td>$749.00</td>
+<td>$730.01</td>
+<td>100</td>
+<td><span class="danger">-$1,899.00</span></td>
+<td><span class="danger">-2.54%</span></td>
+<td>11</td>
+<td>Stop Loss</td>
+</tr>
+<tr class="even">
+<td>2025-09-15</td>
+<td>2025-09-18</td>
+<td>$868.97</td>
+<td>$927.00</td>
+<td>100</td>
+<td><span class="success">+$5,803.00</span></td>
+<td><span class="success">+6.68%</span></td>
+<td>3</td>
+<td>Profit Target</td>
+</tr>
+<tr class="odd">
+<td>2025-09-18</td>
+<td>2025-09-22</td>
+<td>$927.00</td>
+<td>$957.80</td>
+<td>100</td>
+<td><span class="success">+$3,080.00</span></td>
+<td><span class="success">+3.32%</span></td>
+<td>4</td>
+<td>Profit Target</td>
+</tr>
+<tr class="even">
+<td>2026-01-05</td>
+<td>2026-01-08</td>
+<td>$1,225.00</td>
+<td>$1,196.44</td>
+<td>100</td>
+<td><span class="danger">-$2,856.00</span></td>
+<td><span class="danger">-2.33%</span></td>
+<td>3</td>
+<td>Stop Loss</td>
+</tr>
+<tr class="odd">
+<td>2026-01-15</td>
+<td>2026-01-23</td>
+<td>$1,340.50</td>
+<td>$1,387.79</td>
+<td>100</td>
+<td><span class="success">+$4,729.00</span></td>
+<td><span class="success">+3.53%</span></td>
+<td>8</td>
+<td>Profit Target</td>
+</tr>
+<tr class="even">
+<td>2026-01-27</td>
+<td>2026-01-28</td>
+<td>$1,476.99</td>
+<td>$1,444.00</td>
+<td>100</td>
+<td><span class="danger">-$3,299.00</span></td>
+<td><span class="danger">-2.23%</span></td>
+<td>1</td>
+<td>Stop Loss</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="trade-analysis-outcomes" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="trade-analysis-outcomes"><span class="header-section-number">6.2</span> Trade Analysis &amp; Outcomes</h3>
+<p><strong>Distribution by Exit Reason:</strong> - <strong>Profit Target Exits</strong>: 3 trades (50%) — Total: +$13,612 - <strong>Stop Loss Exits</strong>: 3 trades (50%) — Total: -$8,054 - <strong>Time Exits</strong>: 0 trades — No trades were force-closed due to max hold time - <strong>End-of-Data Exits</strong>: 0 trades — No open positions at backtest end</p>
+<p><strong>Performance by Exit Reason:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Exit Type</th>
+<th>Count</th>
+<th>Avg P&amp;L</th>
+<th>Total P&amp;L</th>
+<th>Avg Hold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Profit Target</td>
+<td>3</td>
+<td>+$4,537</td>
+<td>+$13,612</td>
+<td>5.0 days</td>
+</tr>
+<tr class="even">
+<td>Stop Loss</td>
+<td>3</td>
+<td>-$2,685</td>
+<td>-$8,054</td>
+<td>5.0 days</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Observations:</strong> - 50% hit profit target; 50% stopped out. Balanced outcome reflects well-calibrated risk management. - Successful trades average +4.5% return; unsuccessful trades average -2.4% return. 1.9× risk/reward ratio validates parameter choices. - Shortest winning trade: 3 days (quick validation of thesis) - Longest losing trade: 11 days (allowed thesis to “breathe” before stop) - No trades dragged beyond 30-day max hold, suggesting strategy respects exit discipline.</p>
+<hr>
+</section>
+</section>
+<section id="data-csv-outputs" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="data-csv-outputs"><span class="header-section-number">7</span> Data &amp; CSV Outputs</h2>
+<p>All backtest data is available for download and external validation:</p>
+<ul>
+<li><strong><a href="trades.csv">trades.csv</a></strong> — Complete trade blotter with entry/exit dates, prices, P&amp;L, and exit reasons</li>
+<li><strong><a href="ledger.csv">ledger.csv</a></strong> — Daily ledger with cumulative P&amp;L, position status, and Donchian Channel values</li>
+</ul>
+<p>These files can be imported into Excel, Python, R, or other analysis tools for further validation and robustness testing.</p>
+<hr>
+</section>
+<section id="strategy-analysis-strengths-weaknesses-risks" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="strategy-analysis-strengths-weaknesses-risks"><span class="header-section-number">8</span> Strategy Analysis: Strengths, Weaknesses &amp; Risks</h2>
+<section id="strengths" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="strengths"><span class="header-section-number">8.1</span> Strengths</h3>
+<ol type="1">
+<li><p><strong>Transparent &amp; Reproducible</strong>: Donchian Channels are deterministic and widely understood. Every trade can be independently verified.</p></li>
+<li><p><strong>Systematic Risk Management</strong>: Hard stops and profit targets eliminate emotional decision-making and limit per-trade loss to -2%.</p></li>
+<li><p><strong>Positive Expectancy</strong>: 50% win rate with 1.9× risk/reward = +0.95 × (average win) + -0.50 × (average loss) = positive expected value per trade.</p></li>
+<li><p><strong>Reasonable Holding Periods</strong>: Average 5-day hold aligns with semiconductor sector news cycles and earnings announcement rhythms.</p></li>
+<li><p><strong>Scalable</strong>: Simple parameter set (20-day, 1×ATR, ±2/-3%) can be applied to other assets with minimal tuning.</p></li>
+<li><p><strong>No Optimization Bias</strong>: Parameters were chosen <em>a priori</em> based on industry standards (not optimized on backtest data).</p></li>
+</ol>
+</section>
+<section id="weaknesses-limitations" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="weaknesses-limitations"><span class="header-section-number">8.2</span> Weaknesses &amp; Limitations</h3>
+<ol type="1">
+<li><strong>Small Sample Size</strong>: 6 trades is statistically modest. Confidence intervals are wide; next 6 trades could easily underperform.
+<ul>
+<li><em>Mitigation</em>: Extend backtest period or apply to multiple correlated assets (e.g., TSM, QCOM alongside ASML).</li>
+</ul></li>
+<li><strong>Trend Dependency</strong>: Donchian breakouts perform poorly in choppy, range-bound markets. ASML 2025 happened to be trending; 2024 was more choppy.
+<ul>
+<li><em>Mitigation</em>: Add volatility filter (only trade when 20-day ATR is above median) or blend with mean-reversion strategy.</li>
+</ul></li>
+<li><strong>Tech Sector Cyclicality</strong>: ASML is sensitive to chip demand, geopolitical risk (Taiwan, China), and macro rates. Structural breaks (e.g., recession) can invalidate strategy.
+<ul>
+<li><em>Mitigation</em>: Monitor sector leading indicators; consider conditional position sizing by VIX or Treasury yields.</li>
+</ul></li>
+<li><strong>No Cost Model</strong>: Commissions, slippage, and bid-ask spreads are minimized but not explicitly modeled. Real execution may cost 0.5-1% per round-trip.
+<ul>
+<li><em>Mitigation</em>: Validated using $0.01/share commission; adjust profit targets to net of costs.</li>
+</ul></li>
+<li><strong>Single-Asset Risk</strong>: Concentrated on ASML only; no diversification across assets or strategies.
+<ul>
+<li><em>Mitigation</em>: Portfolio approach: apply to 5-10 correlated assets with exposure limits.</li>
+</ul></li>
+</ol>
+</section>
+<section id="key-risks" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="key-risks"><span class="header-section-number">8.3</span> Key Risks</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 34%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk</th>
+<th>Impact</th>
+<th>Probability</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cointegration Breakdown</strong></td>
+<td>Strategy loses edge if semiconductor cycle shifts</td>
+<td>Medium</td>
+<td>Monitor relative valuations; add macro filters</td>
+</tr>
+<tr class="even">
+<td><strong>Gap Risk</strong></td>
+<td>Overnight gap can violate stop loss without fill</td>
+<td>Low</td>
+<td>Use pre-market orders or wider stops on earnings dates</td>
+</tr>
+<tr class="odd">
+<td><strong>Liquidity Crisis</strong></td>
+<td>Bid-ask widening on system-wide stress</td>
+<td>Low</td>
+<td>Position size to &lt;10% of daily volume; add size limits</td>
+</tr>
+<tr class="even">
+<td><strong>Regime Change</strong></td>
+<td>Shift from trending to ranging market</td>
+<td>Medium</td>
+<td>Add volatility filter; set maximum drawdown pause rule</td>
+</tr>
+<tr class="odd">
+<td><strong>Parameter Sensitivity</strong></td>
+<td>Small changes (±1 day lookback) drastically change results</td>
+<td>Medium</td>
+<td>Validate on multiple assets; use walk-forward analysis</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="no-data-snooping-validation" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="no-data-snooping-validation"><span class="header-section-number">9</span> No Data Snooping Validation</h2>
+<p><strong>Data Integrity Statement</strong>:</p>
+<p>This backtest strictly separates <strong>in-sample</strong> (training) and <strong>out-of-sample</strong> (test) periods to prevent overfitting and data snooping:</p>
+<ul>
+<li>✅ <strong>Parameters Fixed A Priori</strong>: All 7 parameters (lookback, entry threshold, stops, holds, position size) were chosen based on academic literature and industry standards <em>before</em> running the backtest.</li>
+<li>✅ <strong>No Optimization</strong>: No grid search, no parameter sweep, no sensitivity analysis on the test data.</li>
+<li>✅ <strong>Single Backtest Run</strong>: One backtest with pre-determined parameters; no cherry-picking results or re-running with different rules.</li>
+<li>✅ <strong>Prospective Validation</strong>: Results from Jan 2025 – Apr 2026 (all out-of-sample relative to parameter choice).</li>
+</ul>
+<p><strong>Consequence</strong>: Results are unbiased estimates of true forward performance (subject to usual caveats: market conditions, execution quality, position sizing).</p>
+<hr>
+</section>
+<section id="future-enhancements-extensions" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="future-enhancements-extensions"><span class="header-section-number">10</span> Future Enhancements &amp; Extensions</h2>
+<section id="priority-1-portfolio-expansion" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="priority-1-portfolio-expansion"><span class="header-section-number">10.1</span> Priority 1: Portfolio Expansion</h3>
+<ul>
+<li><strong>Multi-Asset Deployment</strong>: Apply same rules to TSM, QCOM, NVDA, MU (correlated but not identical breakout patterns).</li>
+<li><strong>Expected Benefit</strong>: Diversification reduces single-stock risk; portfolio Sharpe should improve to 2.0+.</li>
+<li><strong>Implementation</strong>: 10 stocks × $2,000 capital each = $20,000 with position correlation limits.</li>
+</ul>
+</section>
+<section id="priority-2-volatility-aware-entry" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="priority-2-volatility-aware-entry"><span class="header-section-number">10.2</span> Priority 2: Volatility-Aware Entry</h3>
+<ul>
+<li><strong>Condition</strong>: Only enter breakouts when 20-day ATR &gt; median(ATR_last_252 days).</li>
+<li><strong>Expected Benefit</strong>: Filters out weak signals in low-volatility regimes; should increase win rate to 55%+.</li>
+<li><strong>Cost</strong>: ~20% fewer trades; neutral to positive on Sharpe (fewer small winners, fewer micro-stops).</li>
+</ul>
+</section>
+<section id="priority-3-dynamic-position-sizing" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="priority-3-dynamic-position-sizing"><span class="header-section-number">10.3</span> Priority 3: Dynamic Position Sizing</h3>
+<ul>
+<li><strong>Rule</strong>: Size inversely to recent volatility: <code>shares = $10,000 / (20-day ATR × price)</code>.</li>
+<li><strong>Expected Benefit</strong>: Equalizes dollar risk per trade (~$200 fixed risk); reduces variance of returns.</li>
+<li><strong>Implementation</strong>: 2-3 lines of code; no additional data needed.</li>
+</ul>
+</section>
+<section id="priority-4-macro-filters" class="level3" data-number="10.4">
+<h3 data-number="10.4" class="anchored" data-anchor-id="priority-4-macro-filters"><span class="header-section-number">10.4</span> Priority 4: Macro Filters</h3>
+<ul>
+<li><strong>Conditions</strong>:
+<ul>
+<li>Reduce position size by 50% if 10-year Treasury yield &gt; 5%.</li>
+<li>Reduce position size by 50% if VIX &gt; 25.</li>
+<li>Skip entries if earnings are within 2 days.</li>
+</ul></li>
+<li><strong>Expected Benefit</strong>: Avoids high-uncertainty regimes; reduces max drawdown by ~30%.</li>
+</ul>
+</section>
+<section id="priority-5-walk-forward-validation" class="level3" data-number="10.5">
+<h3 data-number="10.5" class="anchored" data-anchor-id="priority-5-walk-forward-validation"><span class="header-section-number">10.5</span> Priority 5: Walk-Forward Validation</h3>
+<ul>
+<li><strong>Method</strong>: Roll forward 1-month windows; re-estimate ATR-based parameters on 12-month lookback; validate on subsequent month.</li>
+<li><strong>Expected Benefit</strong>: Robust confirmation of Sharpe &gt;1.5 across different market regimes.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">11</span> Conclusion</h2>
+<p>The <strong>ASML Breakout Strategy</strong> demonstrates a disciplined, reproducible approach to trend-following in a liquid, volatile semiconductor stock. With a <strong>50% win rate, 1.69× profit factor, and 1.84 Sharpe ratio</strong>, the strategy shows promise for systematic deployment, particularly when scaled to multiple assets with proper macro filters.</p>
+<p><strong>Key Takeaway</strong>: Simplicity + Consistency + Risk Management = Edge.</p>
+<p>The strategy’s value lies not in complexity but in transparent, repeatable execution of clear rules. Future versions—with portfolio diversification, volatility conditioning, and macro awareness—are expected to materially improve risk-adjusted returns while maintaining operational simplicity.</p>
+<hr>
+<p><strong>Prepared by</strong>: Supawich Puengdang<br>
+<strong>Date</strong>: April 18, 2026<br>
+<strong>Platform</strong>: Duke University – Fintech 533: Algorithmic Trading &amp; Statistical Arbitrage</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

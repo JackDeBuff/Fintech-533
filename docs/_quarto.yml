@@ -8,6 +8,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: breakout-strategy.qmd
+        text: "ASML Breakout Strategy"
       - about.qmd
 
 format:
